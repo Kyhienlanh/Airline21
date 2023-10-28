@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "FormOrder";
+
+
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<style>
+    .form-detail {
+        padding-top: 50px;
+        display: flex;
+        align-items: flex-end;
+    }
+
+        .form-detail .control-custom {
+            font-size: 14px;
+            color: #868686;
+            width: 97%;
+        }
+
+        .form-detail .group {
+            position: relative;
+        }
+
+        .form-detail input {
+            display: block;
+            padding: 14px 0;
+            border: none;
+            border-bottom: 1px solid #d8d8d8;
+            margin-top: 26px;
+        }
+
+        .form-detail label {
+            font-size: 14px;
+            color: #868686;
+            position: absolute;
+            pointer-events: none;
+            left: 0;
+            top: 16px;
+        }
+
+    input:focus
+   {
+        outline: none;
+    }
+
+    .form-detail .bar {
+        position: relative;
+        display: block;
+        width: 97%;
+    }
+
+    .bar::before,
+    .bar::after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #2cb680;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .bar::before {
+        left: 50%;
+    }
+
+    .bar::after {
+        right: 50%;
+    }
+
+    .form-detail input:focus ~ .bar::before,
+    .form-detail input:focus ~ .bar::after  
+    {
+        width: 50%;
+    }
+
+    .bar::before,
+    .bar::after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #2cb680;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .form-detail input:focus ~ .bar::before,
+    .form-detail input:focus ~ .bar::after
+    {
+        width: 50%;
+    }
+
+    .form-button {
+        margin-top: 20px;
+    }
+
+    .form-detail label {
+        font-size: 14px;
+        color: #868686;
+        position: absolute;
+        pointer-events: none;
+        left: 0;
+        top: 16px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .form-detail input:focus ~ label,
+    .form-detail input:valid ~ label
+     {
+        top: -16px;
+        color: #2cb680;
+    }
+    .layout {
+        display: flex;
+        justify-content: space-between;
+    }
+    .mot{
+        width:60%;
+    }
+    .hai{
+        width:30%;
+    }
+
+</style>
+
+
+<div class="layout" style="padding-top:150px">
+    <div class="mot">
+        @using (Html.BeginForm("FormOrder", "HomePage"))
+        {
+            <div class="container">
+                <div class="mot" style="text-align:center">
+
+                    <div class="form-detail">
+                        <div class="form-info col-md-6 col-xs-12">
+                            <div class="group">
+                                <input class="control-custom" type="text" name="fullname" />
+                                <span class="bar"></span>
+                                <label>Full name</label>
+                            </div>
+                            <div class="group">
+                                <input class="control-custom" type="date" name="birthday" />
+                                <span class="bar"></span>
+                                <label>birthday</label>
+                            </div>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="Phone" />
+                                <span class="bar"></span>
+                                <label>Phone</label>
+                            </div>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="Email" />
+                                <span class="bar"></span>
+                                <label>Email</label>
+                            </div>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="CitizenIdentificationCard" />
+                                <span class="bar"></span>
+                                <label>CitizenIdentificationCard</label>
+                            </div>
+
+                            <div class="group" style="display: none;">
+                                <input class="control-custom" type="text" name="ticketID" value="@ViewBag.TicketID" />
+                                <span class="bar"></span>
+                                <label>ticketID</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-button text-center">
+                <button class="btn btn-info" type="submit">Submit</button>
+            </div>
+
+        }
+    </div>
+    <div class="hai">
+        @Html.Action("Giave", "HomePage", new { id = ViewBag.ticketid })
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+﻿<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    @using (Html.BeginForm("FindFlights", "Homepage", FormMethod.Post))
+    {
+        <form class="row g-4 mt-5">
+            <div class="col-sm-6 col-md-6 col-xl-5">
+                <div class="input-group-icon">
+                    <label class="form-label visually-hidden" for="inputAddress1">Address 1</label>
+                    <input class="form-control input-box form-voyage-control" name="fromAirport" id="inputAddress1" type="text" placeholder="From where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xl-5">
+                <div class="input-group-icon">
+                    <label class="form-label visually-hidden" for="inputAddress2">Address 2</label>
+                    <input class="form-control input-box form-voyage-control" name="toAirport" id="inputAddress2" type="text" placeholder="To where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"> </i></span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xl-5">
+                <div class="input-group-icon">
+                    <input class="form-control input-box form-voyage-control" name="TuNgay" id="inputdateOne" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xl-5">
+                <div class="input-group-icon">
+                    <input class="form-control input-box form-voyage-control" name="DenNgay" id="inputDateTwo" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
+                </div>
+            </div>
+            <div class="col-12 col-xl-10 col-lg-12 d-grid mt-6">
+                <button class="btn btn-secondary" type="submit">Search Packages</button>
+            </div>
+        </form>
+    }
+</div>

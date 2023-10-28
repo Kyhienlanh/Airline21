@@ -1,0 +1,71 @@
+﻿@using ProjectAirLine39.Models;
+@{
+    ViewBag.Title = "Giave";
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Your custom CSS styles for the invoice layout can go here */
+        .invoice {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .invoice-header {
+            text-align: center;
+        }
+
+        .invoice-details {
+            margin-top: 20px;
+        }
+
+        .invoice-item {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="invoice-header">
+            <h2>Flight details</h2>
+        </div>
+        <div class="invoice-details">
+            <div class="invoice-item">
+                <strong>Name Flight:</strong> @Model.Flight.NameFlight
+            </div>
+            <div class="invoice-item">
+                <strong>Name Ticket:</strong> @Model.Ticket.NameTicket
+            </div>
+            <div class="invoice-item">
+                <strong>From Airport:</strong> @Model.Flight.fromAirport
+            </div>
+            <div class="invoice-item">
+                <strong>To Airport:</strong> @Model.Flight.toAirport
+            </div>
+            <div class="invoice-item">
+                <strong>Flight Date:</strong> @Model.Flight.FlightDate
+            </div>
+            <div class="invoice-item">
+                <strong>Departure Time:</strong> @Model.Flight.departure_time
+            </div>
+            <div class="invoice-item">
+                <strong>Arrival Time:</strong> @Model.Flight.arrival_time
+            </div>
+            <div class="invoice-item">
+                <strong>Hand Luggage:</strong> @Model.Ticket.HandLuggage
+            </div>
+            <div class="invoice-item">
+                <strong>Luggage:</strong> @Model.Ticket.luggage
+            </div>
+            <div class="invoice-item">
+                <strong>Price:</strong> @Model.Ticket.price
+            </div>
+        </div>
+    </div>
+</body>
+</html>

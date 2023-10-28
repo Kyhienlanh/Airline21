@@ -1,0 +1,46 @@
+﻿
+@using ProjectAirLine39.Models;
+@{
+    ViewBag.Title = "Ticket";
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
+
+}
+@model List<TicketTypeViewModel>
+<style>
+    .buy-button {
+        background-color: #0074d9; /* Set the background color */
+        color: #fff; /* Set the text color */
+        padding: 10px 20px; /* Adjust padding for button size */
+        border: none; /* Remove the button border */
+        cursor: pointer; /* Show a pointer cursor on hover */
+        border-radius: 5px; /* Add rounded corners */
+        font-size: 16px; /* Set the font size */
+    }
+</style>
+<div style="padding-top: 100px;">
+    <h1 class="text-center">Ticket normal</h1>
+    <div class="container ticket-form">
+        <table class="table table-bordered">
+            <tr>
+                <th>Name Ticket</th>
+                <th>Price</th>
+                <th>Price Sale</th>
+                <th>Status</th>
+                <th>Name Type</th>
+                <th>Buy</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Ticket.NameTicket</td>
+                    <td>@item.Ticket.price</td>
+                    <td>@item.Ticket.priceSale</td>
+                    <td>@item.Ticket.status</td>
+                    <td>@item.TypeTicket.NameType</td>
+                    <td>@Html.ActionLink("Buy", "FormOrder", new { id = item.Ticket.ticketID })</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>

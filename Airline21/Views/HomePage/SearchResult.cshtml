@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
+}
+
+
+<div style="padding-top:100px;">
+    <div class="container">
+        <h2 style="text-align:center;">Trip List</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Flight Name</th>
+                    <th>Departure Time</th>          
+                    <th>From Airport</th>
+                    <th>To Airport</th>
+                    <th>Flight Date</th>
+                    <th>common in flight</th>
+                    <th>businessman in flight</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NameFlight</td>
+                        <td>@item.departure_time</td>
+                        <td>@item.fromAirport</td>
+                        <td>@item.toAirport</td>
+                        <td>@item.FlightDate</td>
+                        <td>@Html.ActionLink("Ticket", "Ticket", new { id = item.IdFlight })</td>
+                        <td>@Html.ActionLink("TicketVIP", "TicketVIP", new { id = item.IdFlight })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
