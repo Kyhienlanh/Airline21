@@ -1,65 +1,111 @@
-﻿@using Airline21.Models
-@model LoginViewModel
+﻿@model Airline21.Models.LoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
 
+<style>
+    /* Your custom styles here */
+</style>
+
+<link href="~/assets/css/theme.css" rel="stylesheet" />
+
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll" style="height: 100px">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("index","Homepage")">
+                <img class="d-inline-block" src="~/assets/img/gallery/logo.png" width="50" alt="logo" />
+                <span class="fw-bold text-primary ms-2">HK AIRLINE</span>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
+                    <li class="nav-item px-2">
+                        <a class="nav-link fw-medium active" aria-current="page" href="#destinations">
+                            <span class="nav-link-icon text-800 me-1 fas fa-map-marker-alt"></span>
+                            <span class="nav-link-text">Locations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="#flights">
+                            <span class="nav-link-icon text-800 me-1 fas fa-plane"></span>
+                            <span class="nav-link-text">Flights</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="#hotels">
+                            <span class="nav-link-icon text-800 me-1 fas fa-hotel"></span>
+                            <span class="nav-link-text">Hotels</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="#">
+                            <span class="nav-link-icon text-800 me-1 fas fa-bolt"></span>
+                            <span class="nav-link-text">Activities</span>
+                        </a>
+                    </li>
+                </ul>
+                
+
+                    @Html.Partial("_LoginPartial")
+      
+            </div>
+        </div>
+    </nav>
+
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-outline form-white mb-4">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "Email", id = "typeEmailX" })
+
+                                    </div>
+                                    <div class="form-outline form-white mb-4">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Password", id = "typePasswordX" })
+
+                                    </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                }
+
+                                @Html.Partial("_ExternalLoginsListPartial", new Airline21.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                <i class="fab fa-google fa-lg"></i> Google
+
+                                <div>
+                                    <p class="mb-0">
+                                        Don't have an account? <a href="@Url.Action("Register", "Account")" class="text-white-50 fw-bold">Sign Up</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-outline-dark" />
-                        </div>
-                    </div>
-                    <p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>
-                    @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
-                }
-            </section>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
-    </div>
+    </section>
 </main>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script src="~/vendors/popperjs/popper.min.js"></script>
+<script src="~/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="~/vendors/is/is.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="~/vendors/fontawesome/all.min.js"></script>
+<script src="~/assets/js/theme.js"></script>
