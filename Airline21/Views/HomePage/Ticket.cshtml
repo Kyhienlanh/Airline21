@@ -37,7 +37,19 @@
                     <td>@item.Ticket.priceSale</td>
                     <td>@item.Ticket.status</td>
                     <td>@item.TypeTicket.NameType</td>
-                    <td>@Html.ActionLink("Buy", "FormOrder", new { id = item.Ticket.ticketID })</td>
+                    @if (@item.Ticket.status == null)
+                    {
+                        <td>
+                            @Html.ActionLink("Buy", "FormOrder", new { id = item.Ticket.ticketID }, new { @class = "btn btn-primary", id = "buy-link", style = "background-color: #FF0000; color: #FFFFFF; font-weight: bold;" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn btn-primary disabled" id="buy-link">Buy (sold out)</a>
+                        </td>
+                    }
+
 
                 </tr>
             }

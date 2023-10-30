@@ -57,12 +57,11 @@ namespace Airline21.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+         
             ViewBag.ReturnUrl = returnUrl;
             return PartialView();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -78,20 +77,21 @@ namespace Airline21.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                // case SignInStatus.Success:
-                //  return RedirectToLocal(returnUrl);
                 case SignInStatus.Success:
-                    return RedirectToAction("index", "Homepage");
+                    //return RedirectToLocal(returnUrl); // Default redirect if returnUrl is not provided.
+                    return Redirect(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Invalid login attempt");
                     return PartialView(model);
             }
         }
+
 
         //
         // GET: /Account/VerifyCode
