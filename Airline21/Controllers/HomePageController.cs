@@ -199,7 +199,7 @@ namespace ProjectAirLine39.Controllers
             existingTicket.status = true;
             var userdata = db.UserCustomer_Ticket.Find(user.IDuser_Ticket);
             userdata.status = true;
-             db.SaveChanges();
+            db.SaveChanges();
 
             //on successful payment, show success page to user.  
             return View("SuccessView");
