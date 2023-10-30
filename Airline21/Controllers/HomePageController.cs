@@ -133,6 +133,8 @@ namespace ProjectAirLine39.Controllers
         }
         public ActionResult SuccessView()
         {
+
+
             return View();
         }
 
@@ -184,12 +186,21 @@ namespace ProjectAirLine39.Controllers
                     {
                         return View("FailureView");
                     }
+                 
                 }
             }
             catch (Exception ex)
             {
                 return View("FailureView");
             }
+            var ticket = Session["Ticket"] as Ticket;
+            UserCustomer_Ticket user = Session["User"] as UserCustomer_Ticket;
+            var existingTicket = db.Tickets.Find(ticket.ticketID);
+            existingTicket.status = true;
+            var userdata = db.UserCustomer_Ticket.Find(user.IDuser_Ticket);
+            userdata.status = true;
+            db.SaveChanges();
+
             //on successful payment, show success page to user.  
             return View("SuccessView");
         }
