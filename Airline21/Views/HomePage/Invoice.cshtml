@@ -1,0 +1,44 @@
+﻿@using Airline21.Models;
+@model IEnumerable<UserCustomer_Ticket>
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for the invoice */
+        .invoice {
+            text-align: center;
+            padding-top: 140px;
+        }
+
+        .invoice-item {
+            margin: 20px;
+            border: 1px solid #dddddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top:150px">
+        <h2 class="text-center">Invoice</h2>
+
+        @foreach (var item in Model)
+        {
+            <div class="invoice-item">
+                <p>Name: @item.Name</p>
+                <p>Phone: @item.PhoneCustomer</p>
+                <p>Email: @item.EmailCustomer</p>
+                <p>Birthday: @item.birthday</p>
+                <p>Ticket ID: @item.ticketID</p>
+            </div>
+        }
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

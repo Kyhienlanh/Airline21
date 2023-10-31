@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Airline21.Models.Ticket>
+
+@{
+    ViewBag.Title = "Ticket";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Ticket</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdFlight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceSale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.luggage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HandLuggage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTicket)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priceSale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.luggage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HandLuggage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTicket)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ticketID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ticketID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ticketID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

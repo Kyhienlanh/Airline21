@@ -1,0 +1,131 @@
+﻿@model Airline21.Models.Flight
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* CSS for an invoice-like design */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .invoice {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+        .invoice h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+    .invoice-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+        .invoice-details .invoice-number,
+        .invoice-details .invoice-date {
+            font-size: 18px;
+            color: #333;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    .invoice-total {
+        margin-top: 20px;
+        text-align: right;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .action-links {
+        margin-top: 20px;
+    }
+
+        .action-links a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+            .action-links a:hover {
+                background-color: #0056b3;
+            }
+
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<h2>Details</h2>
+
+<div class="invoice">
+    <h4>Flight</h4>
+    <table>
+        <tr>
+            <th>ID Flight</th>
+            <th>Name Flight</th>
+            <th>Departure time</th>
+            <th>Arrival time</th>
+            <th>From Airport</th>
+            <th>To Airport</th>
+            <th>Flight Date</th>
+            <th>ID Brand</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.IdFlight)</td>
+            <td>@Html.DisplayFor(model => model.NameFlight)</td>
+            <td>@Html.DisplayFor(model => model.departure_time)</td>
+            <td>@Html.DisplayFor(model => model.arrival_time)</td>
+            <td>@Html.DisplayFor(model => model.fromAirport)</td>
+            <td>@Html.DisplayFor(model => model.toAirport)</td>
+            <td>@Html.DisplayFor(model => model.FlightDate)</td>
+            <td>@Html.DisplayFor(model => model.IDBrand)</td>
+        </tr>
+    </table>
+</div>
+
+<p class="action-links">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdFlight }) |
+    @Html.ActionLink("Back to List", "Flight")
+</p>

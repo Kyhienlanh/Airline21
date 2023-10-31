@@ -79,6 +79,7 @@ namespace Airline21.Controllers
             {
                 case SignInStatus.Success:
                     //return RedirectToLocal(returnUrl); // Default redirect if returnUrl is not provided.
+                    Session["Account"] = model.Email;
                     return Redirect(returnUrl);
 
                 case SignInStatus.LockedOut:
@@ -93,7 +94,7 @@ namespace Airline21.Controllers
         }
 
 
-        //
+
         // GET: /Account/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
@@ -335,7 +336,9 @@ namespace Airline21.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    Session["Account"] = loginInfo;
+                    return Redirect(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -394,6 +397,7 @@ namespace Airline21.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["Account"] = null;
             return RedirectToAction("Index", "HomePage");
         }
 

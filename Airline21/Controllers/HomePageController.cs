@@ -42,7 +42,7 @@ namespace ProjectAirLine39.Controllers
                        join f in db.TypeTickets on s.IdType equals f.IdType
                        where s.IdFlight == id && f.IdType == 1
                        select new TicketTypeViewModel { Ticket = s, TypeTicket = f };
-
+            
             return View(data.ToList());
         }
         public ActionResult TicketVIP(int id)
@@ -68,10 +68,20 @@ namespace ProjectAirLine39.Controllers
         [HttpGet]
         public ActionResult FormOrder(int id)
         {
+            var AccountData = Session["Account"];
+            if (AccountData == null)
+            {
+                // Lưu URL hiện tại vào biến returnUrl
+                string returnUrl = Request.Url.AbsoluteUri;
+
+                // Chuyển hướng đến trang đăng nhập và truyền returnUrl như một tham số
+                return RedirectToAction("Login", "Account", new { returnUrl });
+            }
+
             ViewBag.ticketid = id;
             Ticket dataticket = db.Tickets.FirstOrDefault(s => s.ticketID == id);
-
             Session["Ticket"] = dataticket;
+           
             return PartialView();
 
         }
@@ -126,6 +136,17 @@ namespace ProjectAirLine39.Controllers
 
             return View(data);
         }
+        public ActionResult test1()
+        {
+            var user = Session["Account"];
+            if (user == null)
+            {
+            
+                return RedirectToAction("index");
+            }
+            ViewBag.checkdata = user;
+            return View();
+        }
 
         public ActionResult FailureView()
         {
@@ -136,6 +157,18 @@ namespace ProjectAirLine39.Controllers
 
 
             return View();
+        }
+        public ActionResult Invoice()
+        {
+            //email
+            var Account = Session["Account"];
+            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
+            var user = db.AspNetUsers.SingleOrDefault(u => u.Email == Account);
+            
+            var Data = from s in db.UserCustomer_Ticket where s.IDAccount == user.Id select s;
+
+            return View(Data);
+
         }
 
         public ActionResult PaymentWithPaypal(string Cancel = null)
@@ -199,7 +232,13 @@ namespace ProjectAirLine39.Controllers
             existingTicket.status = true;
             var userdata = db.UserCustomer_Ticket.Find(user.IDuser_Ticket);
             userdata.status = true;
+            var Account = Session["Account"];
+            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
+            var userlogin = db.AspNetUsers.SingleOrDefault(u => u.Email == Account);
+            userdata.IDAccount = userlogin.Id.ToString();
             db.SaveChanges();
+            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
+          
 
             //on successful payment, show success page to user.  
             return View("SuccessView");
@@ -279,11 +318,6 @@ namespace ProjectAirLine39.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-
-
-
-
-
 
 
 

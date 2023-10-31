@@ -1,0 +1,111 @@
+﻿@model Airline21.Models.Ticket
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    /* Custom CSS for a table layout */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+    /* CSS for styling the "Delete" button */
+    input[type="submit"] {
+        background-color: #dc3545; /* Red background color */
+        color: #fff; /* White text color */
+        padding: 10px 20px; /* Adjust padding as needed */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #c82333; /* Darker red on hover */
+            color: #fff;
+        }
+</style>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.IdFlight)</td>
+            <td>@Html.DisplayFor(model => model.IdFlight)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.IdType)</td>
+            <td>@Html.DisplayFor(model => model.IdType)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.price)</td>
+            <td>@Html.DisplayFor(model => model.price)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.priceSale)</td>
+            <td>@Html.DisplayFor(model => model.priceSale)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.status)</td>
+            <td>@Html.DisplayFor(model => model.status)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.created_at)</td>
+            <td>@Html.DisplayFor(model => model.created_at)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.updated_at)</td>
+            <td>@Html.DisplayFor(model => model.updated_at)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.luggage)</td>
+            <td>@Html.DisplayFor(model => model.luggage)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.HandLuggage)</td>
+            <td>@Html.DisplayFor(model => model.HandLuggage)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.NameTicket)</td>
+            <td>@Html.DisplayFor(model => model.NameTicket)</td>
+        </tr>
+
+
+    </table>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
