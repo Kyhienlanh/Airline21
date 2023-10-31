@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "FormOrder";
 
 
@@ -40,8 +40,7 @@
             top: 16px;
         }
 
-    input:focus
-   {
+    input:focus {
         outline: none;
     }
 
@@ -73,8 +72,7 @@
     }
 
     .form-detail input:focus ~ .bar::before,
-    .form-detail input:focus ~ .bar::after  
-    {
+    .form-detail input:focus ~ .bar::after {
         width: 50%;
     }
 
@@ -92,8 +90,7 @@
     }
 
     .form-detail input:focus ~ .bar::before,
-    .form-detail input:focus ~ .bar::after
-    {
+    .form-detail input:focus ~ .bar::after {
         width: 50%;
     }
 
@@ -114,22 +111,23 @@
     }
 
     .form-detail input:focus ~ label,
-    .form-detail input:valid ~ label
-     {
+    .form-detail input:valid ~ label {
         top: -16px;
         color: #2cb680;
     }
+
     .layout {
         display: flex;
         justify-content: space-between;
     }
-    .mot{
-        width:60%;
-    }
-    .hai{
-        width:30%;
+
+    .mot {
+        width: 60%;
     }
 
+    .hai {
+        width: 30%;
+    }
 </style>
 
 
@@ -190,4 +188,3 @@
         @Html.Action("Giave", "HomePage", new { id = ViewBag.ticketid })
     </div>
 </div>
-

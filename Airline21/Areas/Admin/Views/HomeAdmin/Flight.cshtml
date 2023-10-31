@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc
+@using Airline21.Models
+@model PagedList.PagedList<Airline21.Models.Flight>
+
+@{
+    ViewBag.Title = "Flight";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .pager {
+        margin-top: 20px;
+    }
+</style>
+<h2>Flight</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr class="table-warning">
+        <th>
+            ID Flight
+        </th>
+        <th>
+            Name Flight
+        </th>
+        <th>
+            Departure time
+        </th>
+        <th>
+            Arrival time
+        </th>
+        <th>
+            From Airport
+        </th>
+        <th>
+            To Airport
+        </th>
+        <th>
+            Flight Date
+        </th>
+
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr class="table-success">
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFlight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameFlight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departure_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.arrival_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fromAirport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.toAirport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightDate)
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.IdFlight })" class="btn btn-warning" role="button">Edit</a>
+                <a href="@Url.Action("Details", new { id = item.IdFlight })" class="btn btn-primary" role="button">Details</a>
+                <a href="@Url.Action("Delete", new { id = item.IdFlight })" class="btn btn-danger" role="button">Delete</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager" style="text-align: center;">
+    @Html.PagedListPager(Model, page => Url.Action("Flight", new { page }))
+</div>

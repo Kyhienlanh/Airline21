@@ -46,7 +46,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
@@ -163,9 +172,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -173,6 +179,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\user1Controller.cs" />
+    <Compile Include="Controllers\AccountAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -252,6 +264,68 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets1\css\style.css" />
+    <Content Include="assets1\images\dashboard\circle.png" />
+    <Content Include="assets1\images\dashboard\circle.svg" />
+    <Content Include="assets1\images\dashboard\img_1.jpg" />
+    <Content Include="assets1\images\dashboard\img_2.jpg" />
+    <Content Include="assets1\images\dashboard\img_3.jpg" />
+    <Content Include="assets1\images\dashboard\img_4.jpg" />
+    <Content Include="assets1\images\faces-clipart\pic-1.png" />
+    <Content Include="assets1\images\faces-clipart\pic-2.png" />
+    <Content Include="assets1\images\faces-clipart\pic-3.png" />
+    <Content Include="assets1\images\faces-clipart\pic-4.png" />
+    <Content Include="assets1\images\faces\face1.jpg" />
+    <Content Include="assets1\images\faces\face10.jpg" />
+    <Content Include="assets1\images\faces\face11.jpg" />
+    <Content Include="assets1\images\faces\face12.jpg" />
+    <Content Include="assets1\images\faces\face13.jpg" />
+    <Content Include="assets1\images\faces\face14.jpg" />
+    <Content Include="assets1\images\faces\face15.jpg" />
+    <Content Include="assets1\images\faces\face16.jpg" />
+    <Content Include="assets1\images\faces\face17.jpg" />
+    <Content Include="assets1\images\faces\face18.jpg" />
+    <Content Include="assets1\images\faces\face19.jpg" />
+    <Content Include="assets1\images\faces\face2.jpg" />
+    <Content Include="assets1\images\faces\face20.jpg" />
+    <Content Include="assets1\images\faces\face21.jpg" />
+    <Content Include="assets1\images\faces\face22.jpg" />
+    <Content Include="assets1\images\faces\face23.jpg" />
+    <Content Include="assets1\images\faces\face24.jpg" />
+    <Content Include="assets1\images\faces\face25.jpg" />
+    <Content Include="assets1\images\faces\face26.jpg" />
+    <Content Include="assets1\images\faces\face27.jpg" />
+    <Content Include="assets1\images\faces\face3.jpg" />
+    <Content Include="assets1\images\faces\face4.jpg" />
+    <Content Include="assets1\images\faces\face5.jpg" />
+    <Content Include="assets1\images\faces\face6.jpg" />
+    <Content Include="assets1\images\faces\face7.jpg" />
+    <Content Include="assets1\images\faces\face8.jpg" />
+    <Content Include="assets1\images\faces\face9.jpg" />
+    <Content Include="assets1\images\favicon.ico" />
+    <Content Include="assets1\images\favicon.png" />
+    <Content Include="assets1\images\logo-mini.svg" />
+    <Content Include="assets1\images\logo.svg" />
+    <Content Include="assets1\images\sprites\blue.png" />
+    <Content Include="assets1\images\sprites\dark.png" />
+    <Content Include="assets1\images\sprites\flag.png" />
+    <Content Include="assets1\images\sprites\green.png" />
+    <Content Include="assets1\images\sprites\jsgrid-icons.png" />
+    <Content Include="assets1\images\sprites\red.png" />
+    <Content Include="assets1\images\sprites\yellow.png" />
+    <Content Include="assets1\js\chart.js" />
+    <Content Include="assets1\js\dashboard.js" />
+    <Content Include="assets1\js\file-upload.js" />
+    <Content Include="assets1\js\hoverable-collapse.js" />
+    <Content Include="assets1\js\jquery.cookie.js" />
+    <Content Include="assets1\js\misc.js" />
+    <Content Include="assets1\js\off-canvas.js" />
+    <Content Include="assets1\js\todo.js" />
+    <Content Include="assets1\js\todolist.js" />
+    <Content Include="assets1\vendors\chart.js\Chart.min.js" />
+    <Content Include="assets1\vendors\css\vendor.bundle.base.css" />
+    <Content Include="assets1\vendors\js\vendor.bundle.base.js" />
+    <Content Include="assets1\vendors\mdi\css\materialdesignicons.min.css" />
     <Content Include="assets\css\theme-rtl.css" />
     <Content Include="assets\css\theme-rtl.min.css" />
     <Content Include="assets\css\theme.css" />
@@ -335,6 +409,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -371,6 +446,89 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="assets1\css\style.css.map" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Bold.eot" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Bold.woff" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Bold.woff2" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Light.eot" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Light.woff" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Light.woff2" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Medium.eot" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Medium.woff" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Medium.woff2" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Regular.eot" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Regular.woff" />
+    <Content Include="assets1\fonts\Ubuntu\Ubuntu-Regular.woff2" />
+    <Content Include="assets1\scss\components\_badges.scss" />
+    <Content Include="assets1\scss\components\_bootstrap-progress.scss" />
+    <Content Include="assets1\scss\components\_breadcrumbs.scss" />
+    <Content Include="assets1\scss\components\_buttons.scss" />
+    <Content Include="assets1\scss\components\_cards.scss" />
+    <Content Include="assets1\scss\components\_checkbox-radio.scss" />
+    <Content Include="assets1\scss\components\_dropdown.scss" />
+    <Content Include="assets1\scss\components\_forms.scss" />
+    <Content Include="assets1\scss\components\_icons.scss" />
+    <Content Include="assets1\scss\components\_lists.scss" />
+    <Content Include="assets1\scss\components\_preview.scss" />
+    <Content Include="assets1\scss\components\_tables.scss" />
+    <Content Include="assets1\scss\components\_todo-list.scss" />
+    <Content Include="assets1\scss\landing-screens\_auth.scss" />
+    <Content Include="assets1\scss\mixins\_animation.scss" />
+    <Content Include="assets1\scss\mixins\_background.scss" />
+    <Content Include="assets1\scss\mixins\_badges.scss" />
+    <Content Include="assets1\scss\mixins\_blockqoute.scss" />
+    <Content Include="assets1\scss\mixins\_breadcrumbs.scss" />
+    <Content Include="assets1\scss\mixins\_buttons.scss" />
+    <Content Include="assets1\scss\mixins\_cards.scss" />
+    <Content Include="assets1\scss\mixins\_misc.scss" />
+    <Content Include="assets1\scss\mixins\_pagination.scss" />
+    <Content Include="assets1\scss\mixins\_popovers.scss" />
+    <Content Include="assets1\scss\mixins\_text.scss" />
+    <Content Include="assets1\scss\mixins\_tooltips.scss" />
+    <Content Include="assets1\scss\style.scss" />
+    <Content Include="assets1\scss\_dashboard.scss" />
+    <Content Include="assets1\scss\_demo.scss" />
+    <Content Include="assets1\scss\_fonts.scss" />
+    <Content Include="assets1\scss\_footer.scss" />
+    <Content Include="assets1\scss\_functions.scss" />
+    <Content Include="assets1\scss\_layouts.scss" />
+    <Content Include="assets1\scss\_misc.scss" />
+    <Content Include="assets1\scss\_navbar.scss" />
+    <Content Include="assets1\scss\_reset.scss" />
+    <Content Include="assets1\scss\_sidebar.scss" />
+    <Content Include="assets1\scss\_typography.scss" />
+    <Content Include="assets1\scss\_utilities.scss" />
+    <Content Include="assets1\scss\_variables.scss" />
+    <Content Include="assets1\scss\_vertical-wrapper.scss" />
+    <Content Include="assets1\scss\_widget-grid.scss" />
+    <Content Include="assets1\vendors\js\bootstrap.min.js.map" />
+    <Content Include="assets1\vendors\mdi\css\materialdesignicons.min.css.map" />
+    <Content Include="assets1\vendors\mdi\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="assets1\vendors\mdi\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="assets1\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="assets1\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Flight.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Ticket.cshtml" />
+    <Content Include="Areas\Admin\Views\user1\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\user1\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\user1\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\user1\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -435,9 +593,15 @@
     <Content Include="Views\HomePage\FailureView.cshtml" />
     <Content Include="Views\HomePage\SuccessView.cshtml" />
     <Content Include="Views\HomePage\test.cshtml" />
+    <Content Include="Views\HomePage\test1.cshtml" />
+    <Content Include="Views\HomePage\Invoice.cshtml" />
+    <Content Include="Views\AccountAdmin\login.cshtml" />
+    <Content Include="Views\AccountAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Account\" />
     <Folder Include="assets\img\illustrations\" />
   </ItemGroup>
   <ItemGroup>

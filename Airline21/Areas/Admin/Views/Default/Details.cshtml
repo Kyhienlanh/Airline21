@@ -1,0 +1,134 @@
+﻿@model Airline21.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    /* Custom CSS for an enlarged table */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .invoice {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+        .invoice h2 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 15px; /* Increase the padding for a larger appearance */
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    .action-links {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .action-links a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+            .action-links a:hover {
+                background-color: #0056b3;
+            }
+</style>
+<h2>Details</h2>
+
+<div>
+
+    <div class="invoice">
+        <h4>Ticket</h4>
+        <table>
+            <tr>
+                <th>Ticket ID</th>
+                <th>
+                    ID Flight
+                </th>
+                <th>
+                    ID Type
+                </th>
+                <th>
+                    Price
+                </th>
+
+                <th>
+                    Created at
+                </th>
+                <th>
+                    Updated at
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Luggage
+                </th>
+                <th>
+                    Hand Luggage
+                </th>
+                <th>
+                    Name Ticket
+                </th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.IdFlight)</td>
+                <td>@Html.DisplayFor(model => model.IdType)</td>
+                <td>@Html.DisplayFor(model => model.price)</td>
+                <td>@Html.DisplayFor(model => model.priceSale)</td>
+                <td>@Html.DisplayFor(model => model.created_at)</td>
+                <td>@Html.DisplayFor(model => model.updated_at)</td>
+                <td>@Html.DisplayFor(model => model.status)</td>
+                <td>@Html.DisplayFor(model => model.luggage)</td>
+                <td>@Html.DisplayFor(model => model.HandLuggage)</td>
+                <td>@Html.DisplayFor(model => model.NameTicket)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<p class="action-links">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ticketID }) |
+    @Html.ActionLink("Back to List", "Ticket")
+</p>
