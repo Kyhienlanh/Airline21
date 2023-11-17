@@ -7,38 +7,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <style>
+    <style >
     .form-detail {
         padding-top: 50px;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 
-        .form-detail .control-custom {
-            font-size: 14px;
-            color: #868686;
-            width: 97%;
-        }
+    .form-detail .control-custom {
+        font-size: 14px;
+        color: #333;
+        width: 100%;
+    }
 
-        .form-detail .group {
-            position: relative;
-        }
+    .form-detail .group {
+        position: relative;
+        margin-bottom: 20px;
+    }
 
-        .form-detail input {
-            display: block;
-            padding: 14px 0;
-            border: none;
-            border-bottom: 1px solid #d8d8d8;
-            margin-top: 26px;
-        }
+    .form-detail input {
+        display: block;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
 
-        .form-detail label {
-            font-size: 14px;
-            color: #868686;
-            position: absolute;
-            pointer-events: none;
-            left: 0;
-            top: 16px;
-        }
+    .form-detail label {
+        font-size: 14px;
+        color: #555;
+        position: absolute;
+        pointer-events: none;
+        left: 10px;
+        top: 10px;
+        transition: 0.2s ease all;
+    }
 
     input:focus {
         outline: none;
@@ -47,7 +52,6 @@
     .form-detail .bar {
         position: relative;
         display: block;
-        width: 97%;
     }
 
     .bar::before,
@@ -55,12 +59,10 @@
         content: '';
         height: 2px;
         width: 0;
-        bottom: 1px;
+        bottom: 0;
         position: absolute;
         background: #2cb680;
         transition: 0.2s ease all;
-        -moz-transition: 0.2s ease all;
-        -webkit-transition: 0.2s ease all;
     }
 
     .bar::before {
@@ -76,17 +78,15 @@
         width: 50%;
     }
 
-    .bar::before,
-    .bar::after {
+    .form-detail .bar::before,
+    .form-detail .bar::after {
         content: '';
         height: 2px;
         width: 0;
-        bottom: 1px;
+        bottom: 0;
         position: absolute;
         background: #2cb680;
         transition: 0.2s ease all;
-        -moz-transition: 0.2s ease all;
-        -webkit-transition: 0.2s ease all;
     }
 
     .form-detail input:focus ~ .bar::before,
@@ -100,88 +100,80 @@
 
     .form-detail label {
         font-size: 14px;
-        color: #868686;
+        color: #555;
         position: absolute;
         pointer-events: none;
-        left: 0;
-        top: 16px;
+        left: 10px;
+        top: 10px;
         transition: 0.2s ease all;
-        -moz-transition: 0.2s ease all;
-        -webkit-transition: 0.2s ease all;
     }
 
     .form-detail input:focus ~ label,
     .form-detail input:valid ~ label {
-        top: -16px;
+        top: 0;
         color: #2cb680;
+        font-size: 12px;
     }
+    
 
-    .layout {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .mot {
-        width: 60%;
-    }
-
-    .hai {
-        width: 30%;
-    }
+ 
 </style>
 
 
+
 <div class="layout" style="padding-top:150px">
-    <div class="mot">
+    <div class="mot" ">
         @using (Html.BeginForm("FormOrder", "HomePage"))
         {
-            <div class="container">
-                <div class="mot" style="text-align:center">
+            <div style="padding-left:200px>
+                <div class="container">
+                    <div class="mot" style="text-align:center">
 
-                    <div class="form-detail">
-                        <div class="form-info col-md-6 col-xs-12">
-                            <div class="group">
-                                <input class="control-custom" type="text" name="fullname" />
-                                <span class="bar"></span>
-                                <label>Full name</label>
-                            </div>
-                            <div class="group">
-                                <input class="control-custom" type="date" name="birthday" />
-                                <span class="bar"></span>
-                                <label>birthday</label>
-                            </div>
-                            <div class="group">
-                                <input class="control-custom" type="text" name="Phone" />
-                                <span class="bar"></span>
-                                <label>Phone</label>
-                            </div>
-                            <div class="group">
-                                <input class="control-custom" type="text" name="Email" />
-                                <span class="bar"></span>
-                                <label>Email</label>
-                            </div>
-                            <div class="group">
-                                <input class="control-custom" type="text" name="CitizenIdentificationCard" />
-                                <span class="bar"></span>
-                                <label>CitizenIdentificationCard</label>
-                            </div>
+                        <div class="form-detail">
+                            <div class="form-info col-md-6 col-xs-12">
+                                <div class="group">
+                                    <input class="control-custom" type="text" name="fullname" />
+                                    <span class="bar"></span>
+                                    <label>Full name</label>
+                                </div>
+                                <div class="group">
+                                    <input class="control-custom" type="date" name="birthday" />
+                                    <span class="bar"></span>
+                                    <label>birthday</label>
+                                </div>
+                                <div class="group">
+                                    <input class="control-custom" type="text" name="Phone" />
+                                    <span class="bar"></span>
+                                    <label>Phone</label>
+                                </div>
+                                <div class="group">
+                                    <input class="control-custom" type="text" name="Email" />
+                                    <span class="bar"></span>
+                                    <label>Email</label>
+                                </div>
+                                <div class="group">
+                                    <input class="control-custom" type="text" name="CitizenIdentificationCard" />
+                                    <span class="bar"></span>
+                                    <label>CitizenIdentificationCard</label>
+                                </div>
 
-                            <div class="group" style="display: none;">
-                                <input class="control-custom" type="text" name="ticketID" value="@ViewBag.TicketID" />
-                                <span class="bar"></span>
-                                <label>ticketID</label>
+                                <div class="group" style="display: none;">
+                                    <input class="control-custom" type="text" name="ticketID" value="@ViewBag.TicketID" />
+                                    <span class="bar"></span>
+                                    <label>ticketID</label>
+                                </div>
+                                <div class="form-button text-center">
+                                    <button class="btn btn-info" type="submit">Submit</button>
+                                </div>
                             </div>
+                           
 
                         </div>
-
                     </div>
-                </div>
 
+              
             </div>
-            <div class="form-button text-center">
-                <button class="btn btn-info" type="submit">Submit</button>
-            </div>
-
+          
         }
     </div>
     <div class="hai">

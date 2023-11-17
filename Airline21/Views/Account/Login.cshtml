@@ -4,8 +4,108 @@
 }
 
 <style>
-    /* Your custom styles here */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        padding-top: 100px;
+    }
+
+    .container {
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .navbar {
+        background-color: transparent;
+        padding: 10px;
+        transition: background-color 0.5s ease-in-out;
+    }
+
+    .navbar-brand {
+        color: #ecf0f1;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #ecf0f1;
+    }
+
+    .navbar-toggler {
+        border: none;
+    }
+
+    .navbar.scrolled {
+        background-color: #34495e;
+    }
+
+    h2 {
+        text-align: center;
+        color: dodgerblue;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 2.5rem;
+        background: linear-gradient(45deg, #3498db, #9b59b6); /* Gradient background */
+        border-radius: 1rem;
+    }
+
+    .form-outline {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-outline-light {
+        background-color: transparent;
+        color: #ecf0f1;
+        border-color: #ecf0f1;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .btn-outline-light:hover {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+
+    .text-white-50 {
+        color: #95a5a6;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .text-white-50:hover {
+            color: #bdc3c7;
+        }
+
+    .google-login-btn {
+        background-color: #4285F4;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease-in-out;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+        .google-login-btn:hover {
+            background-color: #357AE8;
+        }
 </style>
+
 
 <link href="~/assets/css/theme.css" rel="stylesheet" />
 
@@ -47,15 +147,14 @@
                         </a>
                     </li>
                 </ul>
-                
 
-                    @Html.Partial("_LoginPartial")
-      
+                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </nav>
 
-    <section class="vh-100 gradient-custom">
+    <section>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -69,19 +168,19 @@
                                     @Html.AntiForgeryToken()
                                     <div class="form-outline form-white mb-4">
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "Email", id = "typeEmailX" })
-
                                     </div>
                                     <div class="form-outline form-white mb-4">
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Password", id = "typePasswordX" })
-
                                     </div>
-
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                                 }
 
                                 @Html.Partial("_ExternalLoginsListPartial", new Airline21.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                                <i class="fab fa-google fa-lg"></i> Google
+
+                                <a href="#" class="google-login-btn">
+                                    <i class="fab fa-google fa-lg"></i> Google
+                                </a>
 
                                 <div>
                                     <p class="mb-0">
@@ -96,8 +195,6 @@
         </div>
     </section>
 </main>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
