@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Airline21.Models;
+using Airline21.Helper;
 
 namespace Airline21.Controllers
 {
@@ -77,9 +78,16 @@ namespace Airline21.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
+               
                 case SignInStatus.Success:
                     //return RedirectToLocal(returnUrl); // Default redirect if returnUrl is not provided.
+                    var mduser = UserManager.FindByEmail(model.Email);
+                    if (!mduser.EmailConfirmed)
+                    {
+                        return View("notificationEmail");
+                    }
                     Session["Account"] = model.Email;
+
                     return Redirect(returnUrl);
 
                 case SignInStatus.LockedOut:
@@ -158,15 +166,16 @@ namespace Airline21.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Homepage");
+                    SendMail.SendMail123(user.Email, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>","");
+                    // return RedirectToAction("Index", "Homepage");
+                    return View("notificationEmail");
                 }
                 AddErrors(result);
             }

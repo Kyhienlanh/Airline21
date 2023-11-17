@@ -27,45 +27,80 @@
         .invoice-item {
             margin: 10px 0;
         }
+
+        table.invoice {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: auto; /* Adjust this value to move the table to the right */
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #000088;
+            text-align: center;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
-    <div class="invoice">
-        <div class="invoice-header">
-            <h2>Flight details</h2>
-        </div>
-        <div class="invoice-details">
-            <div class="invoice-item">
-                <strong>Name Flight:</strong> @Model.Flight.NameFlight
-            </div>
-            <div class="invoice-item">
-                <strong>Name Ticket:</strong> @Model.Ticket.NameTicket
-            </div>
-            <div class="invoice-item">
-                <strong>From Airport:</strong> @Model.Flight.fromAirport
-            </div>
-            <div class="invoice-item">
-                <strong>To Airport:</strong> @Model.Flight.toAirport
-            </div>
-            <div class="invoice-item">
-                <strong>Flight Date:</strong> @Model.Flight.FlightDate
-            </div>
-            <div class="invoice-item">
-                <strong>Departure Time:</strong> @Model.Flight.departure_time
-            </div>
-            <div class="invoice-item">
-                <strong>Arrival Time:</strong> @Model.Flight.arrival_time
-            </div>
-            <div class="invoice-item">
-                <strong>Hand Luggage:</strong> @Model.Ticket.HandLuggage
-            </div>
-            <div class="invoice-item">
-                <strong>Luggage:</strong> @Model.Ticket.luggage
-            </div>
-            <div class="invoice-item">
-                <strong>Price:</strong> @Model.Ticket.price
-            </div>
-        </div>
-    </div>
+    <table class="invoice">
+        <tr class="invoice-header">
+            <th colspan="2">Flight details</th>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Name Flight:</strong></td>
+            <td>@Model.Flight.NameFlight</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Name Ticket:</strong></td>
+            <td>@Model.Ticket.NameTicket</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>From Airport:</strong></td>
+            <td>@Model.Flight.fromAirport</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>To Airport:</strong></td>
+            <td>@Model.Flight.toAirport</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Flight Date:</strong></td>
+            <td>@Model.Flight.FlightDate</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Departure Time:</strong></td>
+            <td>@Model.Flight.departure_time</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Arrival Time:</strong></td>
+            <td>@Model.Flight.arrival_time</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Hand Luggage:</strong></td>
+            <td>@Model.Ticket.HandLuggage</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Luggage:</strong></td>
+            <td>@Model.Ticket.luggage</td>
+        </tr>
+        <tr class="invoice-details">
+            <td><strong>Price:</strong></td>
+            <td>@Model.Ticket.price</td>
+        </tr>
+    </table>
 </body>
+
 </html>

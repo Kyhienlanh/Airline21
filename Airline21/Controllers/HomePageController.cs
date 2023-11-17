@@ -33,6 +33,7 @@ namespace ProjectAirLine39.Controllers
             var data = from s in db.Flights
                        where s.fromAirport.Equals(fromAirport) && s.toAirport.Equals(toAirport) && (s.FlightDate >= Tungay && s.FlightDate <= Denngay)
                        select s;
+            
             return View(data);
         }
       
@@ -108,7 +109,6 @@ namespace ProjectAirLine39.Controllers
             };
             Session["User"] = user;
           
-
             db.UserCustomer_Ticket.Add(user);
             db.SaveChanges();
 
