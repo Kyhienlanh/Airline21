@@ -1,0 +1,193 @@
+﻿@model Airline21.Models.Flight
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FormInfor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        <style >
+        .form-detail {
+            padding-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .form-detail .control-custom {
+            font-size: 14px;
+            color: #333;
+            width: 100%;
+        }
+
+        .form-detail .group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-detail input {
+            display: block;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .form-detail label {
+            font-size: 14px;
+            color: #555;
+            position: absolute;
+            pointer-events: none;
+            left: 10px;
+            top: 10px;
+            transition: 0.2s ease all;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .form-detail .bar {
+            position: relative;
+            display: block;
+        }
+
+        .bar::before,
+        .bar::after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: #2cb680;
+            transition: 0.2s ease all;
+        }
+
+        .bar::before {
+            left: 50%;
+        }
+
+        .bar::after {
+            right: 50%;
+        }
+
+        .form-detail input:focus ~ .bar::before,
+        .form-detail input:focus ~ .bar::after {
+            width: 50%;
+        }
+
+        .form-detail .bar::before,
+        .form-detail .bar::after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: #2cb680;
+            transition: 0.2s ease all;
+        }
+
+        .form-detail input:focus ~ .bar::before,
+        .form-detail input:focus ~ .bar::after {
+            width: 50%;
+        }
+
+        .form-button {
+            margin-top: 20px;
+        }
+
+        .form-detail label {
+            font-size: 14px;
+            color: #555;
+            position: absolute;
+            pointer-events: none;
+            left: 10px;
+            top: 10px;
+            transition: 0.2s ease all;
+        }
+
+        .form-detail input:focus ~ label,
+        .form-detail input:valid ~ label {
+            top: 0;
+            color: #2cb680;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+      
+        <p>Flight ID: @Model.IdFlight</p>
+        <p>Trip details</p>
+        <p>@Model.fromAirport------>@Model.toAirport</p>
+        <p>>Flight Date:@Model.FlightDate</p>
+        <p>People :x @ViewBag.FormCount</p>
+        <p>Total:@ViewBag.Total</p>
+    </div>
+    <div>
+
+
+        @using (Html.BeginForm("FormInfor", "Order1"))
+        {
+            <div style="padding-left:200px;">
+                <div class="container">
+                    <div class="mot" style="text-align:center">
+                        <div class="group" style="display:none">
+                            <input class="control-custom" type="text" value="@ViewBag.FormCount" name="FormCount" />
+                            <span class="bar"></span>
+                            <label>so</label>
+                        </div>
+                        @for (int i = 1; i <= ViewBag.FormCount; i++)
+                        {
+                            <h1>People @i</h1>
+                            <div class="form-detail">
+                                <div class="form-info col-md-6 col-xs-12">
+
+                                    <div class="group">
+                                        <input class="control-custom" type="text" name="fullname @i" />
+                                        <span class="bar"></span>
+                                        <label>Full name</label>
+                                    </div>
+                                    <div class="group">
+                                        <input class="control-custom" type="date" name="birthday @i" />
+                                        <span class="bar"></span>
+                                        <label>birthday</label>
+                                    </div>
+                                    <div class="group">
+                                        <input class="control-custom" type="text" name="Phone @i" />
+                                        <span class="bar"></span>
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="group">
+                                        <input class="control-custom" type="text" name="Email @i" />
+                                        <span class="bar"></span>
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="group">
+                                        <input class="control-custom" type="text" name="CitizenIdentificationCard @i" />
+                                        <span class="bar"></span>
+                                        <label>CitizenIdentificationCard</label>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-button text-center">
+                <button class="btn btn-info" type="submit">Submit</button>
+            </div>
+        }
+
+
+
+    </div>
+</body>
+</html>

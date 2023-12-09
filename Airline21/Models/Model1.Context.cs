@@ -40,6 +40,7 @@ namespace Airline21.Models
         public virtual DbSet<TypeTicket> TypeTickets { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCustomer_Ticket> UserCustomer_Ticket { get; set; }
+        public virtual DbSet<TypeFlight> TypeFlights { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

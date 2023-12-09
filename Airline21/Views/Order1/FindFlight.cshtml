@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #e5e5e5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .result {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .flight {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Đặt chữ ở giữa chiều cao của .flight */
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 15px 0;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .flight-info {
+        flex: 1;
+        color: #333;
+    }
+
+        .flight-info p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+    h2 {
+        margin-top: 0;
+        text-align: center;
+        color: #007bff;
+    }
+
+    .ticket-links {
+        margin-top: 20px;
+    }
+
+        .ticket-links a.btn-success {
+            background-color: #28a745; /* Màu xanh lá cây - thay đổi theo màu bạn muốn */
+            color: #fff; /* Màu chữ trắng */
+        }
+
+            .ticket-links a.btn-success:hover {
+                background-color: #218838; /* Màu xanh lá cây tối khi hover - thay đổi theo màu bạn muốn */
+            }
+</style>
+
+
+@ViewBag.message
+<div class="result">
+    <div class="container">
+        <h2>Trip List</h2>
+        <div style="display:flex;text-align:center">
+            <h1 style="border-radius:initial">VIP</h1>
+            <h1 style="border-radius:initial">NOMAL</h1>
+        </div>
+        @ViewBag.count
+        @foreach (var item in Model)
+        {
+            <div class="flight">
+                <div class="flight-info">
+                    <p><strong>From Airport:</strong> @item.fromAirport</p>
+                    <p><strong>To Airport:</strong> @item.toAirport</p>
+                    <p><strong>Flight Date:</strong> @item.FlightDate</p>
+                    <p><strong>Departure Time:</strong> @item.departure_time</p>
+                    <p><strong>Arrival Time:</strong> @item.arrival_time</p>
+
+                    <div class="ticket-links">
+                        @Html.ActionLink($"{item.generalprice}", "FormInfor", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink($"{@item.merchantprice}", "FormInfor", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-success" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

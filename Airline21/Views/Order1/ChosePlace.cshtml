@@ -1,0 +1,119 @@
+﻿
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket Reservation</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .flight-options {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+            .flight-options li {
+                flex-basis: 20%; /* Adjust as needed based on your layout */
+                margin: 5px;
+            }
+
+            .flight-options input[type="radio"] {
+                display: none;
+            }
+
+                .flight-options input[type="radio"] + label {
+                    cursor: pointer;
+                    padding: 10px 15px;
+                    background-color: #e4e4e4;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    display: block;
+                    margin-bottom: 5px; /* Add spacing between seats */
+                }
+
+                .flight-options input[type="radio"]:checked + label {
+                    background-color: #3498db;
+                    color: #fff;
+                }
+    </style>
+</head>
+<body>
+
+
+    @{
+        Layout = null;
+    }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flight Ticket Reservation</title>
+        <!-- Add Bootstrap CSS link -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            .flight-options {
+                list-style-type: none;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+                .flight-options li {
+                    flex-basis: 20%; /* Adjust as needed based on your layout */
+                    margin: 5px;
+                }
+
+                .flight-options input[type="radio"] {
+                    display: none;
+                }
+
+                    .flight-options input[type="radio"] + label {
+                        cursor: pointer;
+                        padding: 10px 15px;
+                        background-color: #e4e4e4;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        display: block;
+                        margin-bottom: 5px; /* Add spacing between seats */
+                    }
+
+                    .flight-options input[type="radio"]:checked + label {
+                        background-color: #3498db;
+                        color: #fff;
+                    }
+        </style>
+
+    </head>
+    <body>
+
+
+        <div class="container mt-5">
+            @using (Html.BeginForm("ChosePlace", "Order1"))
+            {
+               
+
+
+
+
+                <input type="submit" class="btn btn-primary mt-3" value="Reserve Ticket">
+            }
+        </div>
+
+        <!-- Add Bootstrap JS and Popper.js scripts -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+</body>
+</html>

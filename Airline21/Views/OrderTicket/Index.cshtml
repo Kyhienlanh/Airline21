@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @ViewBag.Error
+    <div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            @using (Html.BeginForm("index", "OrderTicket", FormMethod.Post))
+            {
+                <div class="col-6">
+                    <div class="input-group-icon">
+                        <label class="form-label visually-hidden" for="inputAddressThree">Address 1</label>
+                        <input class="form-control input-box form-voyage-control" name="Address1" id="inputAddressThree" type="text" placeholder="From where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group-icon">
+                        <label class="form-label visually-hidden" for="inputAddressFour">Address 2</label>
+                        <input class="form-control input-box form-voyage-control" name="Address2" id="inputAddressFour" type="text" placeholder="To where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"> </i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group-icon">
+                        <input class="form-control input-box form-voyage-control" name="date1" id="inputDateThree" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group-icon">
+                        <input class="form-control input-box form-voyage-control" name="date2" id="inputDateFour" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group-icon">
+                        <label class="form-label visually-hidden" for="inputPeopleTwo">People</label>
+                        <select class="form-select form-voyage-select input-box" id="inputPeopleTwo" name="quantity">
+                            <option selected="selected" value="1">1 Adults</option>
+                            <option value="2">2 Adults </option>
+                            <option value="3">3 Adults </option>
+                        </select><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-user"> </i></span>
+                    </div>
+                </div>
+                <div class="col-12 d-grid mt-6">
+                    <button class="btn btn-secondary" type="submit">Search Packages</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

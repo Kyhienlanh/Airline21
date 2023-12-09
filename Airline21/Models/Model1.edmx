@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -85,6 +85,11 @@
           <Property Name="toAirport" Type="nvarchar" MaxLength="50" />
           <Property Name="FlightDate" Type="date" />
           <Property Name="IDBrand" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="generalprice" Type="nvarchar" MaxLength="50" />
+          <Property Name="merchantprice" Type="nvarchar" MaxLength="50" />
+          <Property Name="idTypeFlight" Type="int" />
+          <Property Name="HandLuggage" Type="int" />
         </EntityType>
         <EntityType Name="invoice">
           <Key>
@@ -122,6 +127,13 @@
           <Property Name="HandLuggage" Type="int" />
           <Property Name="NameTicket" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TypeFlight">
+          <Key>
+            <PropertyRef Name="idTypeFlight" />
+          </Key>
+          <Property Name="idTypeFlight" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TypeTicket">
           <Key>
             <PropertyRef Name="IdType" />
@@ -158,6 +170,8 @@
           <Property Name="status" Type="bit" />
           <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="IDAccount" Type="nvarchar" MaxLength="128" />
+          <Property Name="extraluggage" Type="int" />
+          <Property Name="securityService" Type="nchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK__UserCusto__IDAcc__5AEE82B9">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
@@ -236,6 +250,18 @@
             </Principal>
             <Dependent Role="Flight">
               <PropertyRef Name="IDBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_TypeFlight">
+          <End Role="TypeFlight" Type="Self.TypeFlight" Multiplicity="0..1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFlight">
+              <PropertyRef Name="idTypeFlight" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="idTypeFlight" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,6 +368,7 @@
           <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeFlight" EntityType="Self.TypeFlight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeTicket" EntityType="Self.TypeTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCustomer_Ticket" EntityType="Self.UserCustomer_Ticket" Schema="dbo" store:Type="Tables" />
@@ -369,6 +396,10 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Flight" EntitySet="Flight" />
           </AssociationSet>
+          <AssociationSet Name="FK_Flight_TypeFlight" Association="Self.FK_Flight_TypeFlight">
+            <End Role="TypeFlight" EntitySet="TypeFlight" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
           <AssociationSet Name="FK_invoice_UserCustomer_Ticket" Association="Self.FK_invoice_UserCustomer_Ticket">
             <End Role="UserCustomer_Ticket" EntitySet="UserCustomer_Ticket" />
             <End Role="invoice" EntitySet="invoice" />
@@ -390,8 +421,7 @@
             <End Role="UserCustomer_Ticket" EntitySet="UserCustomer_Ticket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -477,6 +507,12 @@
           <Property Name="IDBrand" Type="Int32" />
           <NavigationProperty Name="Brand" Relationship="Self.FK_Flight_Brand" FromRole="Flight" ToRole="Brand" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Flight" FromRole="Flight" ToRole="Ticket" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="generalprice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="merchantprice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idTypeFlight" Type="Int32" />
+          <NavigationProperty Name="TypeFlight" Relationship="Model.FK_Flight_TypeFlight" FromRole="Flight" ToRole="TypeFlight" />
+          <Property Name="HandLuggage" Type="Int32" />
         </EntityType>
         <EntityType Name="invoice">
           <Key>
@@ -560,6 +596,8 @@
           <NavigationProperty Name="invoices" Relationship="Self.FK_invoice_UserCustomer_Ticket" FromRole="UserCustomer_Ticket" ToRole="invoice" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK_UserCustomer_Ticket_Ticket" FromRole="UserCustomer_Ticket" ToRole="Ticket" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserCustomer_Ticket_User" FromRole="UserCustomer_Ticket" ToRole="User" />
+          <Property Name="extraluggage" Type="Int32" />
+          <Property Name="securityService" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -761,6 +799,11 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="TypeFlights" EntityType="Model.TypeFlight" />
+          <AssociationSet Name="FK_Flight_TypeFlight" Association="Model.FK_Flight_TypeFlight">
+            <End Role="TypeFlight" EntitySet="TypeFlights" />
+            <End Role="Flight" EntitySet="Flights" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -773,6 +816,26 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="TypeFlight">
+          <Key>
+            <PropertyRef Name="idTypeFlight" />
+          </Key>
+          <Property Name="idTypeFlight" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Flights" Relationship="Model.FK_Flight_TypeFlight" FromRole="TypeFlight" ToRole="Flight" />
+        </EntityType>
+        <Association Name="FK_Flight_TypeFlight">
+          <End Type="Model.TypeFlight" Role="TypeFlight" Multiplicity="0..1" />
+          <End Type="Model.Flight" Role="Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFlight">
+              <PropertyRef Name="idTypeFlight" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="idTypeFlight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -845,6 +908,11 @@
           <EntitySetMapping Name="Flights">
             <EntityTypeMapping TypeName="Model.Flight">
               <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="HandLuggage" ColumnName="HandLuggage" />
+                <ScalarProperty Name="idTypeFlight" ColumnName="idTypeFlight" />
+                <ScalarProperty Name="merchantprice" ColumnName="merchantprice" />
+                <ScalarProperty Name="generalprice" ColumnName="generalprice" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
                 <ScalarProperty Name="NameFlight" ColumnName="NameFlight" />
                 <ScalarProperty Name="departure_time" ColumnName="departure_time" />
@@ -920,6 +988,8 @@
           <EntitySetMapping Name="UserCustomer_Ticket">
             <EntityTypeMapping TypeName="Model.UserCustomer_Ticket">
               <MappingFragment StoreEntitySet="UserCustomer_Ticket">
+                <ScalarProperty Name="securityService" ColumnName="securityService" />
+                <ScalarProperty Name="extraluggage" ColumnName="extraluggage" />
                 <ScalarProperty Name="IDuser_Ticket" ColumnName="IDuser_Ticket" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PhoneCustomer" ColumnName="PhoneCustomer" />
@@ -967,6 +1037,14 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="TypeFlights">
+            <EntityTypeMapping TypeName="Model.TypeFlight">
+              <MappingFragment StoreEntitySet="TypeFlight">
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+                <ScalarProperty Name="idTypeFlight" ColumnName="idTypeFlight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

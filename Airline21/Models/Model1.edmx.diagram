@@ -28,6 +28,8 @@
         <AssociationConnector Association="Model.FK_UserCustomer_Ticket_Ticket" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_UserCustomer_Ticket_User" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.TypeFlight" Width="1.5" PointX="10.375" PointY="5.875" />
+        <AssociationConnector Association="Model.FK_Flight_TypeFlight" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

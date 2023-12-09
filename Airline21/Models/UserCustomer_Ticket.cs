@@ -32,6 +32,8 @@ namespace Airline21.Models
         public Nullable<bool> status { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
         public string IDAccount { get; set; }
+        public Nullable<int> extraluggage { get; set; }
+        public string securityService { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

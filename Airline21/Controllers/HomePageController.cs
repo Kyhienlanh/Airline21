@@ -19,7 +19,7 @@ namespace ProjectAirLine39.Controllers
         }
         [HttpGet]
         public ActionResult FindFlights()
-        {
+        {   
             return PartialView();
         }
         [HttpPost]
