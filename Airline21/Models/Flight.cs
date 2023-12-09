@@ -28,9 +28,15 @@ namespace Airline21.Models
         public string toAirport { get; set; }
         public Nullable<System.DateTime> FlightDate { get; set; }
         public Nullable<int> IDBrand { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public string generalprice { get; set; }
+        public string merchantprice { get; set; }
+        public Nullable<int> idTypeFlight { get; set; }
+        public Nullable<int> HandLuggage { get; set; }
     
         public virtual Brand Brand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual TypeFlight TypeFlight { get; set; }
     }
 }

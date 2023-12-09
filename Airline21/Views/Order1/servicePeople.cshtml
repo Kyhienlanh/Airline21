@@ -1,0 +1,51 @@
+﻿
+@model List<Airline21.Models.service>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service People</title>
+    <!-- Add your CSS styles or include any necessary libraries here -->
+</head>
+<body>
+    <h2>Service People</h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Extra Luggage</th>
+                    <th>security Service</th>
+                    <th>Total Service Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.extraluggage</td>
+                        <td>@user.securityService</td>
+                        <td>@user.TotalServicePeople</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No service people data found in the session.</p>
+    }
+
+    <!-- Add your additional HTML content or JavaScript scripts here -->
+
+</body>
+</html>

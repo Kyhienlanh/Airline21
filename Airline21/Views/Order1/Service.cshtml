@@ -1,0 +1,71 @@
+﻿@model List<Airline21.Models.UserCustomer_Ticket>
+
+@{
+    Layout = null;
+}
+@Html.Action("DetailFlight", "order1")
+
+@if (Model != null && Model.Count > 0)
+{
+    <h1>Prepaid baggage</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Extra Luggage (5$/1)</th>
+                <th>Security Service(20$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @using (Html.BeginForm("Service", "Order1"))
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var user = Model[i];
+
+                    <tr>
+                        <td>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="id @i" value="@user.IDuser_Ticket" />
+                                <span class="bar"></span>
+                                <label>ID</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="name @i" value="@user.Name" />
+                                <span class="bar"></span>
+                                <label>Name</label>
+                            </div>
+                        </td>
+
+                        <td>
+                            <input type="number" min="0" name="txtSoLuong @i" style="background-color:#f4ff94" />
+                        </td>
+                        <td>
+                            <label>
+                                <input type="radio" name="securityService @i" value="Yes" />
+                                Yes, I want the security service
+                            </label>
+                            <label>
+                                <input type="radio" name="securityService @i" value="No" />
+                                No, I don't want the security service
+                            </label>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4">
+                        <input type="submit" value="Update" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+
+    <p>No user data found in the session.</p>
+}

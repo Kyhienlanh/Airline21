@@ -64,6 +64,12 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+/* Center the login form on the page */
+    .ky {
+        width: 30%;
+        margin: 0 auto; /* Add this line to center the form */
+        padding-top: 130px;
+    }
 
 /* Change styles for span and cancel button on extra small screens */
 @@media screen and (max-width: 300px) {
@@ -72,17 +78,15 @@ span.psw {
     float: none;
   }
   .cancelbtn {
-    width: 100%;
+    width: 50%;
   }
 }
 </style>
 @ViewBag.message
-<div style="padding-top:130px">
+<div class="ky" style="padding-top:130px">
     <h2 style="text-align:center">login</h2>
     <form action="@Url.Action("login")" method="post">
-        <div class="imgcontainer">
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
+       
 
         <div class="container">
             <label for="uname"><b>Username</b></label>
@@ -99,5 +103,4 @@ span.psw {
 
        
     </form>
-
 </div>

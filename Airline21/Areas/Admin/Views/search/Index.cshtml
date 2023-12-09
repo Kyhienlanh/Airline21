@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>CitizenIdentificationCard</h2>
+
+@model List<Airline21.Models.UserCustomer_Ticket>
+
+@{
+    ViewBag.Title = "Product List";
+}
+
+<h2>List</h2>
+
+@using (Html.BeginForm("Index", "search", FormMethod.Get))
+{
+    <p>
+        Search: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>CitizenIdentificationCard</th>
+        <th>PhoneCustomer</th>
+        <th>IDTicket</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.CitizenIdentificationCard</td>
+            <td>@product.PhoneCustomer</td>
+            <td>@product.ticketID</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Chọn Chỗ Ngồi";
+}
+
+<h2>Choose A Place </h2>
+
+<form action="/Order1/ChooseAPlace" method="post">
+    @for (int i = 1; i <= 20; i++)
+    {
+        <button type="submit" name="choNgoi" value="@i">Chỗ Ngồi @i</button>
+    }
+</form>

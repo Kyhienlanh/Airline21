@@ -1,0 +1,92 @@
+﻿@model List<Airline21.Models.Ticket>
+@{
+    var list2 = ViewData["List2"] as List<Airline21.Models.UserCustomer_Ticket>;
+    Layout = null;
+}
+
+<style>
+    .custom-radio {
+        display: inline-block;
+        position: relative;
+        padding-left: 30px; /* Space for the custom radio button */
+        margin-right: 15px; /* Adjust the spacing between radio buttons */
+        cursor: pointer;
+    }
+
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+    }
+
+    .custom-radio input:checked + .checkmark {
+        background-color: #2196F3;
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .custom-radio input:checked + .checkmark:after {
+        display: block;
+    }
+
+    .custom-radio .checkmark:after {
+        top: 7px;
+        left: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+    }
+</style>
+@Html.Action("DetailFlight", "order1")
+@Html.Action("servicePeople", "order1")
+@Html.Action("totalService", "order1")
+
+<div class="container mt-5">
+    <h2>Chosen Flight Details</h2>
+    <div>
+        @using (Html.BeginForm("ChoseFlight", "Order1"))
+        {
+            for (int i = 0; i < list2.Count; i++)
+            {
+                var user = list2[i];
+                <div class="form-group">
+                    <label for="name-@i">IDuser_Ticket</label>
+                    <input class="control-custom" type="text" name="id @i" value="@user.IDuser_Ticket" />
+                </div>
+                <div class="form-group">
+                    <label for="name-@i">Name</label>
+                    <input class="control-custom" type="text" name="name @i" value="@user.Name" />
+                </div>
+
+                <div>
+                    @for (int j = 0; j < Model.Count; j++)
+                    {
+
+                        <label class="custom-radio">
+                            <input type="radio" id="place @j" name="place @i" value="@Model[j].ticketID" autocomplete="off" />
+                            <span class="checkmark"></span>
+                            1A @j
+                        </label>
+                    }
+                </div>
+            }
+            <input type="submit" class="btn btn-primary mt-3" value="CHOSE">
+        }
+    </div>
+</div>
