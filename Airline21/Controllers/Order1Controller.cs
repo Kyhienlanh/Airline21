@@ -255,6 +255,25 @@ namespace Airline21.Controllers
                 return RedirectToAction("Error");
             }
         }
+        public ActionResult TotalAmount()
+        {
+            object totalServiceObject = Session["totalService"];
+            int totalService = (int)totalServiceObject;
+            int total = (int)Session["Total"];
+            int TotalAmount1 = totalService + total;
+            return PartialView(TotalAmount1);
+        }
+        public int Total()
+        {
+            object totalServiceObject = Session["totalService"];
+            int totalService = (int)totalServiceObject;
+            int total = (int)Session["Total"];
+            int TotalAmount1 = totalService + total;
+            return TotalAmount1;
+        }
+
+
+
         [HttpGet]
         public ActionResult ChosePlace()
         {
