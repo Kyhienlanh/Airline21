@@ -1,0 +1,99 @@
+﻿@model List<Airline21.Models.UserCustomer_Ticket>
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = null;
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .invoice-container {
+        width: 50%;
+        height: 50%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    h3 {
+        color: #555;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .heading {
+        color: #e44d26;
+    }
+
+    .btn-paypal {
+        background-color: #00457C;
+        color: #fff;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+    }
+
+        .btn-paypal:hover {
+            background-color: #003366;
+        }
+</style>
+
+<div class="invoice-container">
+    <h2>Payment Details</h2>
+
+    <div>
+        <h3>Invoice</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Extra Luggage</th>
+                    <th>Security Service</th>
+                    <th>Total Service People</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in ViewData["List2"] as List<Airline21.Models.service>)
+                {
+                    <tr>
+                        <td>@service.Name</td>
+                        <td>@service.extraluggage</td>
+                        <td>@service.securityService</td>
+                        <td>@service.TotalServicePeople</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h3>Total Ticket: $@ViewBag.total</h3>
+        <h3>Total Amount: $@ViewBag.TotalAmount</h3>
+        <h3 class="heading">Payment Paypal: <a href="/Order1/PaymentWithPayPal" class="btn-paypal">Payment by PayPal</a></h3>
+    </div>
+</div>
