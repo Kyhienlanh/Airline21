@@ -65,45 +65,11 @@
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     @Html.Action("FindFlights", "HomePage")
+                                   
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                        <form class="row g-4 mt-5">
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <label class="form-label visually-hidden" for="inputAddressThree">Address 1</label>
-                                                    <input class="form-control input-box form-voyage-control" id="inputAddressThree" type="text" placeholder="From where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <label class="form-label visually-hidden" for="inputAddressFour">Address 2</label>
-                                                    <input class="form-control input-box form-voyage-control" id="inputAddressFour" type="text" placeholder="To where" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-map-marker-alt"> </i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <input class="form-control input-box form-voyage-control" id="inputDateThree" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <input class="form-control input-box form-voyage-control" id="inputDateFour" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <label class="form-label visually-hidden" for="inputPeopleTwo">People</label>
-                                                    <select class="form-select form-voyage-select input-box" id="inputPeopleTwo">
-                                                        <option selected="selected">2 Adults</option>
-                                                        <option>2 Adults 1 children</option>
-                                                        <option>2 Adults 2 children</option>
-                                                    </select><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-user"> </i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 d-grid mt-6">
-                                                <button class="btn btn-secondary" type="submit">Search Packages</button>
-                                            </div>
-                                        </form>
+                                        @Html.Action("index", "Order1")
                                     </div>
+
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                         <form class="row g-4 mt-5">
                                             <div class="col-6">
