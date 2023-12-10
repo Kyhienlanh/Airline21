@@ -1,7 +1,7 @@
 ﻿@model List<Airline21.Models.Ticket>
 @{
     var list2 = ViewData["List2"] as List<Airline21.Models.UserCustomer_Ticket>;
-    Layout = null;
+    Layout = "~/Views/Shared/Layoutmenu.cshtml";
 }
 
 <style>
@@ -77,12 +77,24 @@
                 <div>
                     @for (int j = 0; j < Model.Count; j++)
                     {
+                        if (Model[j].status == true)
+                        {
+                            <label class="custom-radio">
+                                <input type="radio" id="place @j" name="place @i" value="@Model[j].ticketID" autocomplete="off" disabled />
+                                <span class="checkmark"></span>
+                                1A @j (Sold out)
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="custom-radio">
+                                <input type="radio" id="place @j" name="place @i" value="@Model[j].ticketID" autocomplete="off" />
+                                <span class="checkmark"></span>
+                                1A @j
+                            </label>
+                        }
 
-                        <label class="custom-radio">
-                            <input type="radio" id="place @j" name="place @i" value="@Model[j].ticketID" autocomplete="off" />
-                            <span class="checkmark"></span>
-                            1A @j
-                        </label>
+
                     }
                 </div>
             }

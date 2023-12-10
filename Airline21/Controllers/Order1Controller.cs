@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
+
 namespace Airline21.Controllers
 {
     public class Order1Controller : Controller
@@ -16,7 +17,7 @@ namespace Airline21.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public ActionResult index(string Address1, string Address2, string quantity, DateTime date1 = default)
@@ -25,7 +26,7 @@ namespace Airline21.Controllers
             {
                 ViewBag.Error = "Please fill in all information";
 
-                return View();
+                return PartialView();
             }
             // Handle the valid case here
             return RedirectToAction("FindFlight", new { Address1, Address2, quantity, date1});
@@ -50,7 +51,15 @@ namespace Airline21.Controllers
         [HttpGet]
         public ActionResult FormInfor(string id, string count)
         {
-          
+            var AccountData = Session["Account"];
+            if (AccountData == null)
+            {
+                // Lưu URL hiện tại vào biến returnUrl
+                string returnUrl = Request.Url.AbsoluteUri;
+
+                // Chuyển hướng đến trang đăng nhập và truyền returnUrl như một tham số
+                return RedirectToAction("Login", "Account", new { returnUrl });
+            }
             int.TryParse(count, out int value);
             ViewBag.FormCount = value;
             if (int.TryParse(id, out int flightId))
@@ -290,6 +299,7 @@ namespace Airline21.Controllers
         public ActionResult ChoseFlight(FormCollection form)
         {
             List<UserCustomer_Ticket> storedUsers = Session["Users"] as List<UserCustomer_Ticket>;
+            List<int>IdTicket =new List<int>();
             for(int i = 0; i < storedUsers.Count; i++)
             {
                 string id = form["id " + i];
@@ -298,7 +308,9 @@ namespace Airline21.Controllers
                 string ticketId = form["place " + i];
                 int.TryParse(ticketId, out int ticket);
                 user.ticketID = ticket;
+                IdTicket.Add(ticket);
             }
+            Session["IdTicket"] = IdTicket;
             db.SaveChanges();
             return RedirectToAction("pay");
           
@@ -356,8 +368,26 @@ namespace Airline21.Controllers
           
             return View(storedUsers);
         }
+        public ActionResult Invoice()
+        {
+            //email
+            var Account = Session["Account"];
+            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
+            var user = db.AspNetUsers.SingleOrDefault(u => u.Email == Account);
 
+            var Data = from s in db.UserCustomer_Ticket where s.IDAccount == user.Id select s;
 
+            return View(Data);
+
+        }
+        public ActionResult FailureView()
+        {
+            return View();
+        }
+        public ActionResult SuccessView()
+        {
+            return View();
+        }
 
 
         public ActionResult PaymentWithPaypal(string Cancel = null)
@@ -375,7 +405,7 @@ namespace Airline21.Controllers
                     //it is returned by the create function call of the payment class  
                     // Creating a payment  
                     // baseURL is the url on which paypal sendsback the data.  
-                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Homepage/PaymentWithPayPal?";
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Order1/PaymentWithPayPal?";
                     //here we are generating guid for storing the paymentID received in session  
                     //which will be used in the payment execution  
                     var guid = Convert.ToString((new Random()).Next(100000));
@@ -415,21 +445,39 @@ namespace Airline21.Controllers
             {
                 return View("FailureView");
             }
-            var ticket = Session["Ticket"] as Ticket;
-            UserCustomer_Ticket user = Session["User"] as UserCustomer_Ticket;
-            var existingTicket = db.Tickets.Find(ticket.ticketID);
-            existingTicket.status = true;
-            var userdata = db.UserCustomer_Ticket.Find(user.IDuser_Ticket);
-            userdata.status = true;
             var Account = Session["Account"];
-            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
-            var userlogin = db.AspNetUsers.SingleOrDefault(u => u.Email == Account);
-            userdata.IDAccount = userlogin.Id.ToString();
+            if (Account != null)
+            {
+                var userlogin = db.AspNetUsers.SingleOrDefault(u => u.Email == Account);
+               
+                List<UserCustomer_Ticket> storedUsers = Session["Users"] as List<UserCustomer_Ticket>;
+                foreach (var item in storedUsers)
+                {
+                    UserCustomer_Ticket user = db.UserCustomer_Ticket.SingleOrDefault(n => n.IDuser_Ticket == item.IDuser_Ticket);
+                    user.status = true;
+                    user.IDAccount = userlogin.Id.ToString();
+                }
+            }
+            else
+            {
+                List<UserCustomer_Ticket> storedUsers = Session["Users"] as List<UserCustomer_Ticket>;
+                foreach (var item in storedUsers)
+                {
+                    UserCustomer_Ticket user = db.UserCustomer_Ticket.SingleOrDefault(n => n.IDuser_Ticket == item.IDuser_Ticket);
+                    user.status = true;
+
+                }
+            }
+               
+             List<int> IdTicket = Session["IdTicket"] as List<int>;
+                foreach (var item in IdTicket)
+                {
+                    Ticket ticket = db.Tickets.SingleOrDefault(n => n.ticketID == (int)item);
+                    ticket.status = true;
+                }
+          
             db.SaveChanges();
-            //var IdAccount = from s in db.AspNetUsers where s.Email.Equals(Account) select s.Id;
 
-
-            //on successful payment, show success page to user.  
             return View("SuccessView");
         }
         private PayPal.Api.Payment payment;
@@ -448,8 +496,14 @@ namespace Airline21.Controllers
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
             // list is a single Ticket object, not a collection
-            var ticket = Session["Ticket"] as Ticket;
+
             //create itemlist and add item objects to it  
+            int TotalAmount = 0; // Default value or some meaningful default for your application
+            if (Session["TotalAmount"] != null && int.TryParse(Session["TotalAmount"].ToString(), out int amount1))
+            {
+                TotalAmount = amount1;
+            }
+           
             var itemList = new ItemList()
             {
                 items = new List<Item>()
@@ -457,11 +511,11 @@ namespace Airline21.Controllers
             //Adding Item Details like name, currency, price etc  
             itemList.items.Add(new Item()
             {
-                name = ticket.NameTicket.ToString(),
+                name = "Ticket",
                 currency = "USD",
-                price = ticket.price.ToString(),
+                price = TotalAmount.ToString(),
                 quantity = "1",
-                sku = "sku"
+                sku = "Ticket Flight"
             });
             var payer = new Payer()
             {
@@ -478,13 +532,14 @@ namespace Airline21.Controllers
             {
                 tax = "0",
                 shipping = "0",
-                subtotal = ticket.price.ToString()
+                subtotal = TotalAmount.ToString()
             };
+            var total = (Convert.ToDouble(details.tax) + Convert.ToDouble(details.shipping) + Convert.ToDouble(details.subtotal)).ToString();
             //Final amount with details  
             var amount = new Amount()
             {
                 currency = "USD",
-                total = ticket.price.ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
+                total = total.ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
                 details = details
             };
             var transactionList = new List<Transaction>();
@@ -508,7 +563,6 @@ namespace Airline21.Controllers
             return this.payment.Create(apiContext);
         }
 
-
         [HttpGet]
         public ActionResult ChosePlace()
         {
@@ -523,18 +577,6 @@ namespace Airline21.Controllers
 
             return View();
         }
-
-
-
-
-
-
-
-
-      
-
-
-
 
         public ActionResult test(int value)
         {

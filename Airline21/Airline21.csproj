@@ -721,6 +721,9 @@
     <Content Include="Views\Order1\TotalAmount.cshtml" />
     <Content Include="Views\Order1\pay.cshtml" />
     <Content Include="Views\Order1\FormInfor2.cshtml" />
+    <Content Include="Views\Order1\FailureView.cshtml" />
+    <Content Include="Views\Order1\SuccessView.cshtml" />
+    <Content Include="Views\Order1\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
