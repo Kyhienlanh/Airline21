@@ -11,7 +11,7 @@
     <title>FormInfor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
-        
+
         .body {
             display: flex;
             justify-content: flex-end; /* Chuyển nội dung về phía bên phải */
@@ -19,11 +19,13 @@
             height: 100vh;
             margin: 0;
         }
+
         .content {
             text-align: right; /* Căn chỉnh văn bản sang phải */
             margin-right: 20px; /* Khoảng cách từ mép phải của trang */
         }
-        <style>
+
+        <style >
         .form-detail {
             padding-top: 500px;
             display: flex;
@@ -31,7 +33,7 @@
             justify-content: center;
             flex-direction: column;
         }
-        
+
 
         .form-detail .control-custom {
             font-size: 14px;
@@ -43,6 +45,7 @@
             position: relative;
             margin-bottom: 20px;
         }
+
             .form-detail .group::after {
                 content: "";
                 display: table;
@@ -139,7 +142,7 @@
     </style>
 </head>
 <body>
-  
+
     <div>
 
 
@@ -157,53 +160,53 @@
                         {
                             <h1 style="text-align:left">People @i</h1>
                             <div class="clearfix">
-                            <div class="form-detail">
-                                <div class="form-info col-md-6 col-xs-12">
+                                <div class="form-detail">
+                                    <div class="form-info col-md-6 col-xs-12">
 
-                                    <div class="group">
-                                        <input class="control-custom" type="text" name="fullname @i" />
-                                        <span class="bar"></span>
-                                        <label>Full name</label>
-                                    </div>
-                                    <div class="group">
-                                        <input class="control-custom" type="date" name="birthday @i" />
-                                        <span class="bar"></span>
-                                        <label>birthday</label>
-                                    </div>
-                                    <div class="group">
-                                        <input class="control-custom" type="text" name="Phone @i" />
-                                        <span class="bar"></span>
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="group">
-                                        <input class="control-custom" type="text" name="Email @i" />
-                                        <span class="bar"></span>
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="group">
-                                        <input class="control-custom" type="text" name="CitizenIdentificationCard @i" />
-                                        <span class="bar"></span>
-                                        <label>CitizenIdentificationCard</label>
+                                        <div class="group">
+                                            <input class="control-custom" type="text" name="fullname @i" />
+                                            <span class="bar"></span>
+                                            <label>Full name</label>
+                                        </div>
+                                        <div class="group">
+                                            <input class="control-custom" type="date" name="birthday @i" />
+                                            <span class="bar"></span>
+                                            <label>birthday</label>
+                                        </div>
+                                        <div class="group">
+                                            <input class="control-custom" type="text" name="Phone @i" />
+                                            <span class="bar"></span>
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="group">
+                                            <input class="control-custom" type="text" name="Email @i" />
+                                            <span class="bar"></span>
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="group">
+                                            <input class="control-custom" type="text" name="CitizenIdentificationCard @i" />
+                                            <span class="bar"></span>
+                                            <label>CitizenIdentificationCard</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                @if (i == 1)
-                                {
-                                    <div class="content">
-                                        <p>Flight ID: @Model.IdFlight</p>
-                                        <p>Trip details</p>
-                                        <p>@Model.fromAirport------>@Model.toAirport</p>
-                                        <p>Flight Date:@Model.FlightDate</p>
-                                        <p>People :x @ViewBag.FormCount</p>
-                                        <p>Total:@ViewBag.Total</p>
-                                    </div>
-                                }
-                            </div>
+                                <div>
+                                    @if (i == 1)
+                                    {
+                                        <div class="content">
+                                            <p>Flight ID: @Model.IdFlight</p>
+                                            <p>Trip details</p>
+                                            <p>@Model.fromAirport------>@Model.toAirport</p>
+                                            <p>Flight Date:@Model.FlightDate</p>
+                                            <p>People :x @ViewBag.FormCount</p>
+                                            <p>Total:@ViewBag.Total</p>
+                                        </div>
+                                    }
+                                </div>
                                 <div>
 
                                 </div>
-                                </div>
+                            </div>
                         }
                     </div>
                 </div>

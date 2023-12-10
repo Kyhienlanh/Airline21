@@ -719,6 +719,8 @@
     <Content Include="Views\Order1\Flight.cshtml" />
     <Content Include="Views\Order1\ChoseFlight.cshtml" />
     <Content Include="Views\Order1\TotalAmount.cshtml" />
+    <Content Include="Views\Order1\pay.cshtml" />
+    <Content Include="Views\Order1\FormInfor2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
