@@ -153,44 +153,45 @@
         margin-left: 20px; /* Adjust the left margin as needed */
     }
 </style>
-<div >
 
 
-    <div class="container mt-5">
-        <h2>Chosen Flight Details</h2>
-        <div class="actions-container">
-            <div class="detail-flight-container">
+<div class="container mt-5">
+    <h2>Chosen Flight Details</h2>
+    <div class="actions-container">
+        <div class="detail-flight-container">
 
-                <div style="width: 1200px; /* or any other value */">
-                    @Html.Action("servicePeople", "order1")
-                </div>
-            </div>
-            <div style="width:100%; margin-right:80px">
-                <!-- Render servicePeople to the left of DetailFlight -->
-
-                @Html.Action("DetailFlight", "order1")
+            <div style="width: 1200px; /* or any other value */">
+                @Html.Action("servicePeople", "order1")
+                
             </div>
         </div>
-        <div class="container1">
-            @Html.Action("totalService", "order1")
-            @Html.Action("TotalAmount", "order1")
-            <div class="form-container">
-                <h2>Seat Selection</h2>
+        <div style="width:100%; margin-right:80px">
+            <!-- Render servicePeople to the left of DetailFlight -->
 
-                @using (Html.BeginForm("ChoseFlight", "Order1"))
+            @Html.Action("DetailFlight1", "order2")
+        </div>
+    </div>
+    <div class="container1">
+
+        @Html.Action("totalService", "order1")
+        <div class="form-container">
+            <h2>Seat Selection</h2>
+
+            @using (Html.BeginForm("ChoseFlight1", "Order2"))
+            {
+                for (int i = 0; i < list2.Count; i++)
                 {
-                    for (int i = 0; i < list2.Count; i++)
+                    if (i == 0 || i % 2 == 0)
                     {
                         var user = list2[i];
-                        <div class="form-group" style="display:none">
+                        <div class="form-group">
                             <label for="name-@i">IDuser_Ticket</label>
                             <input class="control-custom" type="text" name="id @i" value="@user.IDuser_Ticket" />
                         </div>
                         <div class="form-group">
                             <label for="name-@i">Name</label>
-                            <input class="control-custom" type="text" name="name @i" value="@user.Name" readonly />
+                            <input class="control-custom" type="text" name="name @i" value="@user.Name" />
                         </div>
-
 
                         <div class="seat-map">
                             @for (int j = 0; j < Model.Count; j++)
@@ -216,9 +217,10 @@
                         </div>
                     }
 
-                    <input type="submit" class="btn btn-chose" value="Choose Seats">
                 }
-            </div>
+
+                <input type="submit" class="btn btn-chose" value="Choose Seats">
+            }
         </div>
     </div>
 </div>

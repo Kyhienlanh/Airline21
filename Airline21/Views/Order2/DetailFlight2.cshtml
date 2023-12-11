@@ -1,5 +1,6 @@
 ﻿@{
-    var total = ViewData["total"];
+    var total = ViewData["total2"];
+    var quantity = ViewData["quantity"];
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-vB8B+K8HyEcsPPfdNzudap0zCUf0YNRxntOUKotGql8R8tNee5vJm4cMt+EqdrQgQKbixSo98i5t6qjOC6fR2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
@@ -205,7 +206,7 @@
 
     <div class="content">
 
-        <p>TRIP DETAILS</p>
+        <p>TRIP DETAILS 2</p>
         <p style="display: flex; align-items: center;margin-left:25px;">
 
 
@@ -215,11 +216,11 @@
 
         </p>
         <p><span style="margin-left: 10px;">@Model.FlightDate</span></p>
-        <p style="margin-left:30px">Adults:  @ViewBag.FormCount</p>
+        <p style="margin-left:30px">Adults:  @quantity</p>
         <p class="flight-details">
             <span class="detail-label">Total:</span>
 
-            <span class="total-amount">@ViewBag.Total</span>
+            <span class="total-amount">@total</span>
         </p>
     </div>
 

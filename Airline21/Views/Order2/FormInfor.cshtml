@@ -216,7 +216,7 @@
     <div>
 
 
-        @using (Html.BeginForm("FormInfor", "Order1"))
+        @using (Html.BeginForm("FormInfor", "Order2"))
         {
             <div style="padding-left:200px;">
                 <div class="container">
@@ -264,25 +264,14 @@
                                     @if (i == 1)
                                     {
                                         <div class="content">
+                                            @Html.Action("DetailFlight1", "order2")
 
-                                            <p>TRIP DETAILS</p>
-                                            <p style="display: flex; align-items: center;margin-left:25px;">
-
-
-                                                <span>@Model.fromAirport</span>
-                                                <span style="margin-right: 5px;">&#9992;</span> <!-- Airplane icon -->
-                                                <span>@Model.toAirport</span>
-
-                                            </p>
-                                            <p><span style="margin-left: 10px;">@Model.FlightDate</span></p>
-                                            <p style="margin-left:30px">Adults:  @ViewBag.FormCount</p>
-                                            <p class="flight-details">
-                                                <span class="detail-label">Total:</span>
-
-                                                <span class="total-amount">@ViewBag.Total</span>
-                                            </p>
+                                        </div>
+                                        <div class="content">
+                                            @Html.Action("DetailFlight2", "order2")
                                         </div>
                                     }
+
                                 </div>
                                 <div>
 
