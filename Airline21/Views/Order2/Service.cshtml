@@ -131,7 +131,8 @@
     {
         <h1>Prepaid baggage</h1>
         <div class="detail-flight-container">
-            @Html.Action("DetailFlight", "order1")
+            @Html.Action("DetailFlight1", "order2")
+            @Html.Action("DetailFlight2", "order2")
         </div>
         <table>
             <thead>
@@ -143,58 +144,67 @@
                 </tr>
             </thead>
             <tbody>
-                @using (Html.BeginForm("Service", "Order1"))
+                @using (Html.BeginForm("Service", "Order2"))
                 {
                     for (int i = 0; i < Model.Count; i++)
                     {
+
                         var user = Model[i];
 
-                        <tr>
-                            <td>
-                                <div class="group">
-                                    <input class="control-custom" type="text" name="id @i" value="@user.IDuser_Ticket" />
-                                    <span class="bar"></span>
 
-                                </div>
-                            </td>
-                            <td>
-                                <div class="group">
-                                    <input class="control-custom" type="text" name="name @i" value="@user.Name" />
-                                    <span class="bar"></span>
-
-                                </div>
-                            </td>
-
-                            <td>
-                                <input type="number" min="0" name="txtSoLuong @i" />
-                            </td>
-
-                            <td>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="securityService @i" value="Yes" />
-                                        <span class="radio-label">Yes, I want the security service</span>
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="securityService @i" value="No" />
-                                        <span class="radio-label">No, I don't want the security service</span>
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
+                        if (i == 0 || i % 2 == 0)
+                        {
+                        <td>
+                            <h1>People</h1>
+                        </td>
                     }
-
                     <tr>
-                        <td colspan="3" class="text-center">
-                            <input type="submit" value="Update" class="btn btn-primary" />
+
+                        <td>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="id @i" value="@user.IDuser_Ticket" />
+                                <span class="bar"></span>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group">
+                                <input class="control-custom" type="text" name="name @i" value="@user.Name" />
+                                <span class="bar"></span>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <input type="number" min="0" name="txtSoLuong @i" />
+                        </td>
+
+                        <td>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="securityService @i" value="Yes" />
+                                    <span class="radio-label">Yes, I want the security service</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="securityService @i" value="No" />
+                                    <span class="radio-label">No, I don't want the security service</span>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                 }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No user data found in the session.</p>
-    }
+
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </td>
+                </tr>
+            }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No user data found in the session.</p>
+        }
 </div>

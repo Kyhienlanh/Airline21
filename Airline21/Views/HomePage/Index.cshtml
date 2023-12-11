@@ -71,31 +71,7 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                        <form class="row g-4 mt-5">
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <input class="form-control input-box form-voyage-control" id="inputDateFive" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <input class="form-control input-box form-voyage-control" id="inputDateSix" type="date" /><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-calendar"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group-icon">
-                                                    <label class="form-label visually-hidden" for="inputPeopleThree">Person</label>
-                                                    <select class="form-select form-voyage-select input-box" id="inputPeopleThree">
-                                                        <option selected="selected">2 Adults</option>
-                                                        <option>2 Adults 1 children</option>
-                                                        <option>2 Adults 2 children</option>
-                                                    </select><span class="nav-link-icon text-800 fs--1 input-box-icon"><i class="fas fa-user"> </i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 d-grid mt-6">
-                                                <button class="btn btn-secondary" type="submit">Search Packages</button>
-                                            </div>
-                                        </form>
+                                        @Html.Action("index", "Order2")
                                     </div>
                                 </div>
                             </nav>

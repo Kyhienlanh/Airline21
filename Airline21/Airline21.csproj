@@ -283,6 +283,7 @@
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Order1Controller.cs" />
+    <Compile Include="Controllers\Order2Controller.cs" />
     <Compile Include="Controllers\OrderTicketController.cs" />
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
@@ -724,6 +725,22 @@
     <Content Include="Views\Order1\FailureView.cshtml" />
     <Content Include="Views\Order1\SuccessView.cshtml" />
     <Content Include="Views\Order1\Invoice.cshtml" />
+    <Content Include="Views\Order2\Index.cshtml" />
+    <Content Include="Views\Order2\FindFlight.cshtml" />
+    <Content Include="Views\Order2\FindFlight2.cshtml" />
+    <Content Include="Views\Order2\test.cshtml" />
+    <Content Include="Views\Order2\FormInfor.cshtml" />
+    <Content Include="Views\Order2\DetailFlight1.cshtml" />
+    <Content Include="Views\Order2\DetailFlight2.cshtml" />
+    <Content Include="Views\Order2\Service.cshtml" />
+    <Content Include="Views\Order2\ChoseFlight.cshtml" />
+    <Content Include="Views\Order2\ChoseFlight1.cshtml" />
+    <Content Include="Views\Order2\ChoseFlight2.cshtml" />
+    <Content Include="Views\Order2\hi.cshtml" />
+    <Content Include="Views\Order2\TotalAmount.cshtml" />
+    <Content Include="Views\Order2\pay.cshtml" />
+    <Content Include="Views\Order2\FailureView.cshtml" />
+    <Content Include="Views\Order2\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
