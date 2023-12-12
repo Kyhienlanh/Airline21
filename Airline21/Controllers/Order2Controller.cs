@@ -137,7 +137,74 @@ namespace Airline21.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [HttpGet]
+        public ActionResult FormVIP1(string id, string count)
+        {
 
+            int.TryParse(count, out int value);
+            ViewBag.FormCount = value;
+            if (int.TryParse(id, out int flightId))
+            {
+                var data = from s in db.Flights where s.IdFlight == flightId select s;
+                var flight = data.SingleOrDefault();
+
+
+
+                if (int.TryParse(flight.merchantprice, out int merchantprice))
+                {
+                    var total = merchantprice * value;
+                    ViewBag.Total = total;
+                    Session["Total1"] = total;
+                    Session["Flight1"] = flight;
+                    Session["IDFlight1"] = flight.IdFlight;
+                    return RedirectToAction("FindFlight2");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            else
+            {
+
+                return RedirectToAction("Error");
+            }
+        }
+        [HttpGet]
+        public ActionResult FormVIP2(string id, string count)
+        {
+
+            int.TryParse(count, out int value);
+            ViewBag.FormCount = value;
+            if (int.TryParse(id, out int flightId))
+            {
+                var data = from s in db.Flights where s.IdFlight == flightId select s;
+                var flight = data.SingleOrDefault();
+
+
+
+                if (int.TryParse(flight.merchantprice, out int merchantprice))
+                {
+                    var total = merchantprice * value;
+                    ViewBag.Total = total;
+                    Session["Total2"] = total;
+                    Session["Flight2"] = flight;
+                    Session["IDFlight2"] = flight.IdFlight;
+                    return RedirectToAction("FormInfor", new { id = id, count = count });
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            else
+            {
+
+                return RedirectToAction("Error");
+            }
+        }
         public ActionResult test()
         {
             int total1 = (int)Session["Total1"];
