@@ -2,6 +2,7 @@
     ViewBag.Title = "SearchResult";
     Layout = "~/Views/Shared/Layoutmenu.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-4oVs2taLnXjqdOvUMtqorjNM40TrpMlfY5RzhFvPH8uJZx2FJ4bhiQ9DzOshbq/nz9F5dXtPyIcQYSfLfGeMw==" crossorigin="anonymous" />
 
 <style>
     body {
@@ -38,64 +39,100 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .flight-info {
-        flex: 1;
-        color: #333;
+    .flight-into {
         display: flex;
-        flex-direction: column; /* Xếp các phần tử con theo cột */
+        align-items: center;
     }
 
 
+
+
+    .flight-info {
+        flex: 1;
+        color: #333;
+    }
 
         .flight-info p {
             margin: 0;
             line-height: 1.6;
+            font-size: 20px;
         }
 
-    .ticket-links {
-        margin-top: -100px;
-        margin-left: 960px;
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px; /* Adjust as needed */
     }
 
+    h1 {
+        border-radius: initial;
+        margin: 0;
+        font-size: 25px;
+    }
+
+    h2 {
+        margin-top: 0;
+        text-align: center;
+        color: #007bff;
+    }
+
+    .ticket-links {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -60px;
+    }
+
+        .ticket-links a.btn-primary {
+            margin-right: 70px; /* Adjust the spacing as needed */
+        }
+
         .ticket-links a.btn-success {
-            background-color: #28a745;
-            color: #fff;
+            background-color: #28a745; /* Màu xanh lá cây - thay đổi theo màu bạn muốn */
+            color: #fff; /* Màu chữ trắng */
         }
 
             .ticket-links a.btn-success:hover {
-                background-color: #218838;
+                background-color: #218838; /* Màu xanh lá cây tối khi hover - thay đổi theo màu bạn muốn */
             }
-
-    .
 </style>
 
 
+@ViewBag.message
 <div class="result">
     <div class="container">
-        <h2>Trip List 2</h2>
-        <div style="display:flex;text-align:center">
-            <h1 style="border-radius: initial; margin-left:980px ">VIP</h1>
-            <h1 style="border-radius: initial; margin-left: auto">NOMAL</h1>
+        <h2>Trip List</h2>
+        <div class="header-container">
+            <h1 style="margin-left:1220px">VIP</h1>
+            <h1>NORMAL</h1>
         </div>
-        @ViewBag.count
+
         @foreach (var item in Model)
         {
             <div class="flight">
                 <div class="flight-info">
-                    <p><strong>From Airport:</strong> @item.fromAirport</p>
-                    <p style="margin-right:50px"><strong>To Airport:</strong> @item.toAirport</p>
-                    <p><strong>Flight Date:</strong> @item.FlightDate</p>
-                    <p><strong>Departure Time:</strong> @item.departure_time</p>
-                    <p><strong>Arrival Time:</strong> @item.arrival_time</p>
-                    <div class="ticket-links">
-                        @Html.ActionLink($"{item.generalprice}", "FlightNomal2", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink($"{item.merchantprice}", "FormInfor2", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-success" })
+                    <div class="flight-into">
+                        <p><strong></strong> @item.fromAirport</p>
+                        <div>
+                            <i class="fas fa-plane"></i> <!-- FontAwesome airplane icon -->
+                        </div>
+                        <p style="margin-left: 80px"><strong></strong> @item.toAirport</p>
                     </div>
 
+                    <p><strong>Flight Date:</strong> @item.FlightDate</p>
+                    <div class="flight-into">
+                        <p><strong>Departure Time:</strong> @item.departure_time</p>
+                        <p style="margin-left: 50px"><strong>Arrival Time:</strong> @item.arrival_time</p>
+                    </div>
+
+
+                    <div class="ticket-links">
+                        @Html.ActionLink($"{item.generalprice}", "FlightNomal2", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink($"{item.merchantprice}", "FormVIP2", new { id = item.IdFlight, count = @ViewBag.count }, new { @class = "btn btn-success" })
+                    </div>
                 </div>
             </div>
-
-
         }
     </div>
 </div>
+
+
